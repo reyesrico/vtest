@@ -27,7 +27,7 @@ export function itemsFetchData() {
         fetchExperimentsApiCall()
             .then((response) => {
                 dispatch(itemsIsLoading(false));
-                return response;
+                return response.data;
             })
             .then((items) => {
                 dispatch(itemsFetchDataSuccess(items))
