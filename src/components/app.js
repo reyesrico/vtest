@@ -6,34 +6,10 @@ import quickSelectImg from '../quick-select.png';
 
 import Button from './button';
 import QuickSelect from './quickselect';
-import { generateSampleSubjects } from '../services/subject';
 import ExperimentsList from './experimentslist';
 import ExperimentsList2 from './experimentslist2';
 
-import './app.css';
-//import { range, sample } from 'lodash';
-
-
-
 class App extends Component {
-
-  constructor(props) {
-    super(props);
-    //this.data = generateSampleSubjects;
-    //this.generateSampleSubjects = this.generateSampleSubjects.bind(this);
-    this.data = generateSampleSubjects();
-  }
-
-  // generateSampleSubjects() {
-  //   return range(10).map(index => ({
-  //     displayId: index.toString(),
-  //     phase: sample([null, 'Phase 1', 'Phase 2', 'Phase 3']),
-  //     group: sample([null, 'Group 1', 'Group 2', 'Group 3']),
-  //     strain: sample(['129 SV', 'Balb/c']),
-  //     sex: sample(['F', 'M']),
-  //   }))
-  // }
-
   render() {
     return (
       <div>
@@ -76,7 +52,7 @@ class App extends Component {
         <img src={quickSelectImg} alt='Quick Select' />
 
         <hr />
-        <QuickSelect data={this.data} />
+        <QuickSelect />
         <hr />        
 
         <h2>3. ExperimentsList (Redux)</h2>

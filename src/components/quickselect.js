@@ -1,28 +1,40 @@
 import React, { Component } from 'react';
+import { generateSampleSubjects } from '../services/subject';
 
 class QuickSelect extends Component {
     constructor(props) {
         super(props);
         this.getValues = this.getValues.bind(this);
         this.handleChange = this.handleChange.bind(this);
-        this.state = {filter: '-'};
+        this.state = {
+            filter: [],
+            data: generateSampleSubjects()
+        };
     }
 
     getValues(name) {
         switch (name) {
             case 'phase':
-                return [...new Set(this.props.data.map(item => item.phase))].sort();
+                return [...new Set(this.state.data.map(item => item.phase))].sort();
             case 'group':
-                return [...new Set(this.props.data.map(item => item.group))].sort();
+                return [...new Set(this.state.data.map(item => item.group))].sort();
             default:
                 return [];
         }
     }
 
     handleChange(event) {
-        this.setState({filter: event.target.value});
+        var array = this.state.filter;
+        if (event.target.checked) {
+            array.push(event.target.value);
+        }
+        else if (!event.target.checked) {
+            const index = array.indexOf(event.target.value);
+            array.splice(index, 1);
+        }
+        this.setState({ filter: array });
     }
-    
+
     render() {
         return (
             <div>
@@ -32,33 +44,33 @@ class QuickSelect extends Component {
                     <h3>phase</h3>
                     {
                         this.getValues('phase').map((val) => {
-                            if(!val){
-                                val = 'p---';
-                            }                            
-                            return (
-                                <div key={val} >
-                                    <label>
-                                        <input type='checkbox' name={val} value={val} onChange={this.handleChange} />
-                                        {val}
-                                    </label>
-                                </div>
-                            );
+                            if (val) {
+                                return (
+                                    <div key={val} >
+                                        <label>
+                                            <input type='checkbox' name={val} value={val} onChange={this.handleChange} />
+                                            {val}
+                                        </label>
+                                    </div>
+                                );
+                            }
+                            return null;                        
                         })
                     }
                     <h3>group</h3>
                     {
                         this.getValues('group').map((val) => {
-                            if(!val){
-                                val = 'g---';
+                            if (val) {
+                                return (
+                                    <div key={val} >
+                                        <label>
+                                            <input type='checkbox' name={val} value={val} onChange={this.handleChange} />
+                                            {val}
+                                        </label>
+                                    </div>
+                                );
                             }
-                            return (
-                                <div key={val} >
-                                    <label>
-                                        <input type='checkbox' name={val} value={val} onChange={this.handleChange} />
-                                        {val}
-                                    </label>
-                                </div>
-                            );
+                            return null;
                         })
                     }
                 </form>
@@ -76,9 +88,9 @@ class QuickSelect extends Component {
                     </thead>
                     <tbody>
                         {
-                            this.props.data.map(function (row) {
+                            this.state.data.map(function (row) {
                                 var css = 'notSelected';
-                                if(this.state.filter === row.phase || this.state.filter === row.group){
+                                if (this.state.filter.includes(row.phase) || this.state.filter.includes(row.group)) {
                                     css = 'selected';
                                 }
                                 return (

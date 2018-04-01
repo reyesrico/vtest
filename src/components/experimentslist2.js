@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import { React, Component } from 'react';
 import ExperimentsListWithFetch from './experimentslistwithfetch';
 
 class ExperimentsList2 extends Component {

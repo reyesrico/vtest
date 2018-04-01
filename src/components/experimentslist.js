@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { itemsFetchData } from '../actions/items';
 import PropTypes from 'prop-types';
-import ExperimentsListWithFetch from './experimentslistwithfetch';
+//import ExperimentsListWithFetch from './experimentslistwithfetch';
 
 class ExperimentsList extends Component {
     componentDidMount() {
