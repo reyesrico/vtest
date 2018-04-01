@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { itemsFetchData } from '../actions/items';
 import PropTypes from 'prop-types';
+import ExperimentsListWithFetch from './experimentslistwithfetch';
 
 class ExperimentsList extends Component {
     componentDidMount() {
@@ -17,8 +18,8 @@ class ExperimentsList extends Component {
         }
         return (
             <div>
-                <h2>ExperimentsList</h2>
-                
+                <h2>Experiments List</h2>
+
                 <table>
                     <thead>
                         <tr>
@@ -31,10 +32,10 @@ class ExperimentsList extends Component {
                     <tbody>
                         {
                             this.props.items.map((item) => {
-                                if(!item.study_director){
+                                if (!item.study_director) {
                                     item.study_director = '---';
                                 }
-                                if(!item.start_date){
+                                if (!item.start_date) {
                                     item.start_date = '---';
                                 }
                                 return (
@@ -48,7 +49,7 @@ class ExperimentsList extends Component {
                             })
                         }
                     </tbody>
-                </table>                
+                </table>
             </div>
         )
     }
@@ -58,7 +59,7 @@ ExperimentsList.propTypes = {
     fetchData: PropTypes.func,
     items: PropTypes.array,
     hasErrored: PropTypes.bool,
-    isLoading: PropTypes.bool    
+    isLoading: PropTypes.bool
 };
 
 const mapStateToProps = (state) => {
@@ -76,3 +77,10 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(ExperimentsList);
+
+// WITH HOC
+// let filterInfo = {
+//     title: 'Experiments List NEW'
+// };
+
+// export default ExperimentsListWithFetch(ExperimentsList, filterInfo);

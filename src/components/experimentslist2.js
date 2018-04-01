@@ -1,19 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import BaseFilterWrapper from './experimentslistwithfetch';
+import ExperimentsListWithFetch from './experimentslistwithfetch';
 
 class ExperimentsList2 extends Component {
- render() {
-    return(
-        <div>
-            <h2>Experiments List HOC</h2>
-        </div>
-    )
- }
+    render() {
+        return <div>Nothing to display</div>;        
+    }
 }
 
 let filterInfo = {
- title: 'Experiments List HOC'
+    title: 'Experiments List HOC'
 };
 
-export default BaseFilterWrapper(ExperimentsList2, filterInfo);
+export default ExperimentsListWithFetch(ExperimentsList2, filterInfo);
